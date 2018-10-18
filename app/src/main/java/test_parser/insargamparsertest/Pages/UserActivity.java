@@ -31,6 +31,7 @@ public class UserActivity extends PageBaseActivity {
     private TextView mStatus;
     private ImageView mAvatar;
     private ImageDownloader mAvatarLoader;
+    public static final String USER_NAME = "user_name";
 
     @Override
     public String getUrl() {
@@ -40,6 +41,8 @@ public class UserActivity extends PageBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String s = getIntent().getStringExtra(USER_NAME);
+        if(s.length() > 0) mUserName = s;
         setContentView(R.layout.activity_user);
         new HtmlDownloader(this, getUrl()).execute();
         mUserLinearLayout = findViewById(R.id.bodyContayner);
